@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../home/screens/home_screen.dart';
-import '../data/onboard_repository.dart';
+import '../../../data/onboard_repository.dart';
 import 'onboard_screen.dart';
 
 class SplashScreen extends StatefulWidget {

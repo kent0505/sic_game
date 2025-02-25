@@ -11,37 +11,22 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
   final _connectivity = Connectivity();
 
   InternetBloc() : super(InternetInitial()) {
-    on<InternetEvent>(
-      (event, emit) => switch (event) {
-        CheckInternet() => _checkInternet(event, emit),
-        ChangeInternet() => changeInternet(event, emit),
-      },
-    );
-  }
-
-  void _checkInternet(
-    CheckInternet event,
-    Emitter<InternetState> emit,
-  ) {
-    _connectivity.onConnectivityChanged.listen((result) {
-      logger('LISTENING CONNECTION...');
-      if (result.contains(ConnectivityResult.mobile)) {
-        logger('MOBILE');
-        add(ChangeInternet(connected: true));
-      } else if (result.contains(ConnectivityResult.wifi)) {
-        logger('WIFI');
-        add(ChangeInternet(connected: true));
-      } else {
-        logger('NO INTERNET');
-        add(ChangeInternet(connected: false));
-      }
+    on<CheckInternet>((event, emit) {
+      _connectivity.onConnectivityChanged.listen((result) {
+        logger('LISTENING CONNECTION...');
+        if (result.contains(ConnectivityResult.mobile) ||
+            result.contains(ConnectivityResult.wifi)) {
+          logger('HAS INTERNET');
+          add(ChangeInternet(connected: true));
+        } else {
+          logger('NO INTERNET');
+          add(ChangeInternet(connected: false));
+        }
+      });
     });
-  }
 
-  void changeInternet(
-    ChangeInternet event,
-    Emitter<InternetState> emit,
-  ) {
-    event.connected ? emit(InternetSuccess()) : emit(InternetFailure());
+    on<ChangeInternet>((event, emit) {
+      event.connected ? emit(InternetSuccess()) : emit(InternetFailure());
+    });
   }
 }

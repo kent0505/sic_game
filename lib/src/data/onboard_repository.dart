@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../core/config/constants.dart';
+import '../core/config/constants.dart';
 
 abstract interface class OnboardRepository {
   const OnboardRepository();

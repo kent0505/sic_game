@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../internet/widgets/internet_widget.dart';
+import '../widgets/appbar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,9 +11,13 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: InternetWidget(
-          child: Stack(
-        children: [],
-      )),
+        child: Column(
+          children: [
+            Appbar(),
+            SizedBox(height: 16),
+          ],
+        ),
+      ),
     );
   }
 }

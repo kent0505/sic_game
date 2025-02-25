@@ -5,8 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'src/core/config/constants.dart';
 import 'src/core/config/themes.dart';
+import 'src/data/coin_repository.dart';
+import 'src/data/onboard_repository.dart';
 import 'src/features/internet/bloc/internet_bloc.dart';
-import 'src/features/splash/data/onboard_repository.dart';
 import 'src/features/splash/screens/splash_screen.dart';
 
 Future<void> main() async {
@@ -25,11 +26,14 @@ Future<void> main() async {
         RepositoryProvider<OnboardRepository>(
           create: (context) => OnboardRepositoryImpl(prefs: prefs),
         ),
+        RepositoryProvider<CoinRepository>(
+          create: (context) => CoinRepositoryImpl(prefs: prefs),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => InternetBloc()..add(CheckInternet()),
+            create: (context) => InternetBloc(),
           ),
         ],
         child: MyApp(),

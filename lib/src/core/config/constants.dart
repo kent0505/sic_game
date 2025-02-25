@@ -6,6 +6,8 @@ abstract final class Assets {
   static const home = 'assets/home.svg';
   static const rules = 'assets/rules.svg';
   static const settings = 'assets/settings.svg';
+  static const appbar1 = 'assets/appbar1.svg';
+  static const appbar2 = 'assets/appbar2.svg';
 
   static const set1 = 'assets/settings/s1.svg';
   static const set2 = 'assets/settings/s2.svg';
@@ -36,4 +38,5 @@ abstract final class Assets {
 
 abstract final class Keys {
   static const onboard = 'onboard';
+  static const coins = 'coins';
 }

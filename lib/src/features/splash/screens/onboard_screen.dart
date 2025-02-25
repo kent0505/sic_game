@@ -5,7 +5,7 @@ import '../../../core/config/constants.dart';
 import '../../../core/widgets/button.dart';
 import '../../../core/widgets/main_button.dart';
 import '../../home/screens/home_screen.dart';
-import '../data/onboard_repository.dart';
+import '../../../data/onboard_repository.dart';
 
 class OnboardScreen extends StatelessWidget {
   const OnboardScreen({super.key});
@@ -64,22 +64,7 @@ class OnboardScreen extends StatelessWidget {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return _Dialog(
-                          onPressed: () async {
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return HomeScreen();
-                                },
-                              ),
-                              (route) => false,
-                            );
-                            await context
-                                .read<OnboardRepositoryImpl>()
-                                .removeOnboard();
-                          },
-                        );
+                        return _Dialog();
                       },
                     );
                   },
@@ -95,9 +80,7 @@ class OnboardScreen extends StatelessWidget {
 }
 
 class _Dialog extends StatelessWidget {
-  const _Dialog({required this.onPressed});
-
-  final VoidCallback onPressed;
+  const _Dialog();
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +114,18 @@ class _Dialog extends StatelessWidget {
             ),
             Spacer(),
             Button(
-              onPressed: onPressed,
+              onPressed: () {
+                context.read<OnboardRepository>().removeOnboard();
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return HomeScreen();
+                    },
+                  ),
+                  (route) => false,
+                );
+              },
               child: Center(
                 child: Text(
                   'OK',
