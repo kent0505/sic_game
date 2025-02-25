@@ -12,7 +12,6 @@ class FieldButton6 extends StatelessWidget {
       child: Button(
         onPressed: () {},
         child: Container(
-          height: 100,
           margin: EdgeInsets.only(
             bottom: 2,
             right: 2,
