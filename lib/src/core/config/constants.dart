@@ -1,5 +1,6 @@
 abstract final class Assets {
   static const onboard = 'assets/onboard.png';
+  static const back = 'assets/back.svg';
   static const close = 'assets/close.svg';
   static const coin = 'assets/coin.svg';
   static const game = 'assets/game.svg';

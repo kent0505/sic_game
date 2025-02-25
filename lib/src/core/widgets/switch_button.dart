@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'button.dart';
-
 class SwitchButton extends StatelessWidget {
-  const SwitchButton({
-    super.key,
-    required this.isActive,
-    required this.onPressed,
-  });
+  const SwitchButton({super.key, required this.active});
 
-  final bool isActive;
-  final VoidCallback onPressed;
+  final bool active;
 
   @override
   Widget build(BuildContext context) {
@@ -18,31 +11,27 @@ class SwitchButton extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         height: 30,
-        width: 60,
+        width: 50,
         decoration: BoxDecoration(
-          color: isActive ? Color(0xff34C759) : Colors.white,
+          color: active ? Color(0xff34C759) : Colors.white,
           borderRadius: BorderRadius.circular(20),
         ),
-        child: Button(
-          onPressed: onPressed,
-          minSize: 30,
-          child: Stack(
-            children: [
-              AnimatedPositioned(
-                duration: const Duration(milliseconds: 200),
-                top: 4,
-                left: isActive ? 34 : 4,
-                child: Container(
-                  height: 22,
-                  width: 22,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: isActive ? Colors.white : Colors.grey,
-                  ),
+        child: Stack(
+          children: [
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 200),
+              top: 2,
+              left: active ? 22 : 2,
+              child: Container(
+                height: 26,
+                width: 26,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: active ? Colors.white : Colors.grey,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

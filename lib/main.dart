@@ -7,7 +7,7 @@ import 'src/core/config/constants.dart';
 import 'src/core/config/themes.dart';
 import 'src/data/coin_repository.dart';
 import 'src/data/onboard_repository.dart';
-import 'src/features/internet/bloc/internet_bloc.dart';
+import 'src/features/home/bloc/home_bloc.dart';
 import 'src/features/splash/screens/splash_screen.dart';
 
 Future<void> main() async {
@@ -32,9 +32,7 @@ Future<void> main() async {
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (context) => InternetBloc(),
-          ),
+          BlocProvider(create: (context) => HomeBloc()),
         ],
         child: MyApp(),
       ),
