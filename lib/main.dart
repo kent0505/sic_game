@@ -38,7 +38,7 @@ Future<void> main() async {
           BlocProvider(
             create: (context) => GameBloc(
               repository: context.read<CoinRepository>(),
-            )..add(LoadGames()),
+            )..add(InitGame()),
           ),
         ],
         child: MyApp(),

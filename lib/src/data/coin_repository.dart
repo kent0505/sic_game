@@ -7,7 +7,7 @@ abstract interface class CoinRepository {
 
   double getCoins();
 
-  Future<void> addCoins(double amount);
+  Future<void> saveCoins(double amount);
 }
 
 final class CoinRepositoryImpl implements CoinRepository {
@@ -21,7 +21,7 @@ final class CoinRepositoryImpl implements CoinRepository {
   }
 
   @override
-  Future<void> addCoins(double amount) async {
+  Future<void> saveCoins(double amount) async {
     await _prefs.setDouble(Keys.coins, amount);
   }
 }

@@ -13,13 +13,14 @@ class GameBloc extends Bloc<GameEvent, GameState> {
   final CoinRepository _repository;
   ChipModel chip = ChipModel(amount: 10, asset: Assets.chip10);
   double coins = 100000;
+  List<ChipModel> lastChips = [];
 
   GameBloc({required CoinRepository repository})
       : _repository = repository,
         super(GameInitial()) {
     on<GameEvent>(
       (event, emit) => switch (event) {
-        LoadGames() => _loadGames(event, emit),
+        InitGame() => _initGame(event, emit),
         ClearGame() => _clearGame(event, emit),
         UndoGame() => _undoGame(event, emit),
         DealGame() => _dealGame(event, emit),
@@ -29,8 +30,8 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     );
   }
 
-  void _loadGames(
-    LoadGames event,
+  void _initGame(
+    InitGame event,
     Emitter<GameState> emit,
   ) {
     coins = _repository.getCoins();
@@ -51,8 +52,9 @@ class GameBloc extends Bloc<GameEvent, GameState> {
       }
     }
     for (Game game in games) {
-      game.chips.clear();
+      game.chips = [];
     }
+    lastChips = [];
     emit(GamesLoaded(
       games: games,
       chip: chip,
@@ -63,7 +65,22 @@ class GameBloc extends Bloc<GameEvent, GameState> {
   void _undoGame(
     UndoGame event,
     Emitter<GameState> emit,
-  ) {}
+  ) {
+    for (Game game in games) {
+      for (ChipModel ch in game.chips) {
+        if (ch.id == lastChips.last.id) {
+          game.chips.remove(ch);
+          lastChips.removeLast();
+          emit(GamesLoaded(
+            games: games,
+            chip: chip,
+            coins: coins,
+          ));
+          return;
+        }
+      }
+    }
+  }
 
   void _dealGame(
     DealGame event,
@@ -75,6 +92,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     Emitter<GameState> emit,
   ) {
     chip = event.chip;
+    chip.id = lastChips.length;
     emit(GamesLoaded(
       games: games,
       chip: chip,
@@ -94,6 +112,8 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     } else {
       emit(GameNoCoins());
     }
+    chip.id = lastChips.length + 1;
+    lastChips.add(chip);
     emit(GamesLoaded(
       games: games,
       chip: chip,

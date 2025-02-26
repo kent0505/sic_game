@@ -3,7 +3,7 @@ part of 'game_bloc.dart';
 @immutable
 sealed class GameEvent {}
 
-final class LoadGames extends GameEvent {}
+final class InitGame extends GameEvent {}
 
 final class ClearGame extends GameEvent {}
 
