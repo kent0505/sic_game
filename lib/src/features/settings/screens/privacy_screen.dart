@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/appbar.dart';
+import '../../../core/widgets/appbar.dart';
 import '../widgets/terms_text.dart';
 
 class PrivacyScreen extends StatelessWidget {

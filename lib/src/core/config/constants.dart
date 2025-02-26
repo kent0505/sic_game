@@ -9,6 +9,7 @@ abstract final class Assets {
   static const settings = 'assets/settings.svg';
   static const appbar1 = 'assets/appbar1.svg';
   static const appbar2 = 'assets/appbar2.svg';
+  static const bg = 'assets/bg.svg';
 
   static const set1 = 'assets/settings/s1.svg';
   static const set2 = 'assets/settings/s2.svg';
@@ -29,12 +30,12 @@ abstract final class Assets {
   static const d4 = 'assets/dice/d4.svg';
   static const d5 = 'assets/dice/d5.svg';
   static const d6 = 'assets/dice/d6.svg';
-  static const dice1 = 'assets/dice/dice1.svg';
-  static const dice2 = 'assets/dice/dice2.svg';
-  static const dice3 = 'assets/dice/dice3.svg';
-  static const dice4 = 'assets/dice/dice4.svg';
-  static const dice5 = 'assets/dice/dice5.svg';
-  static const dice6 = 'assets/dice/dice6.svg';
+  // static const dice1 = 'assets/dice/dice1.svg';
+  // static const dice2 = 'assets/dice/dice2.svg';
+  // static const dice3 = 'assets/dice/dice3.svg';
+  // static const dice4 = 'assets/dice/dice4.svg';
+  // static const dice5 = 'assets/dice/dice5.svg';
+  // static const dice6 = 'assets/dice/dice6.svg';
 }
 
 abstract final class Keys {

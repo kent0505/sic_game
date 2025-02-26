@@ -40,7 +40,7 @@ class _InternetWidgetState extends State<InternetWidget> {
   @override
   void initState() {
     super.initState();
-    listen();
+    // listen();
   }
 
   @override

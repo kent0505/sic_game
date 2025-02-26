@@ -7,6 +7,7 @@ import 'src/core/config/constants.dart';
 import 'src/core/config/themes.dart';
 import 'src/data/coin_repository.dart';
 import 'src/data/onboard_repository.dart';
+import 'src/features/game/bloc/game_bloc.dart';
 import 'src/features/home/bloc/home_bloc.dart';
 import 'src/features/splash/screens/splash_screen.dart';
 
@@ -19,6 +20,7 @@ Future<void> main() async {
   ]);
 
   final prefs = await SharedPreferences.getInstance();
+  // await prefs.clear();
 
   runApp(
     MultiRepositoryProvider(
@@ -33,6 +35,11 @@ Future<void> main() async {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => HomeBloc()),
+          BlocProvider(
+            create: (context) => GameBloc(
+              repository: context.read<CoinRepository>(),
+            )..add(LoadGames()),
+          ),
         ],
         child: MyApp(),
       ),

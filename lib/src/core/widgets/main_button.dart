@@ -20,10 +20,7 @@ class MainButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
-      height: 50,
-      width: width,
+    return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
@@ -39,15 +36,19 @@ class MainButton extends StatelessWidget {
           ],
         ),
       ),
-      child: Button(
-        onPressed: isActive ? onPressed : null,
-        child: Center(
-          child: Text(
-            title,
-            style: TextStyle(
-              color: isActive ? Colors.white : Colors.black,
-              fontSize: 16,
-              fontFamily: 'w700',
+      child: SizedBox(
+        height: 48,
+        width: width,
+        child: Button(
+          onPressed: isActive ? onPressed : null,
+          child: Center(
+            child: Text(
+              title,
+              style: TextStyle(
+                color: isActive ? Colors.white : Colors.black,
+                fontSize: 16,
+                fontFamily: 'w700',
+              ),
             ),
           ),
         ),

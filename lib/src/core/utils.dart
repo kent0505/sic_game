@@ -2,7 +2,7 @@ import 'dart:developer' as developer;
 
 import 'package:intl/intl.dart';
 
-String formatNumber(int number) {
+String formatNumber(double number) {
   return NumberFormat('#,###', "fr_FR").format(number);
 }
 

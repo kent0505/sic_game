@@ -13,7 +13,9 @@ class SwitchButton extends StatelessWidget {
         height: 30,
         width: 50,
         decoration: BoxDecoration(
-          color: active ? Color(0xff34C759) : Colors.white,
+          color: active
+              ? Color(0xff34C759)
+              : Color(0xff787880).withValues(alpha: 0.16),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Stack(
@@ -27,7 +29,19 @@ class SwitchButton extends StatelessWidget {
                 width: 26,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: active ? Colors.white : Colors.grey,
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.06),
+                      blurRadius: 1,
+                      offset: Offset(0, 3),
+                    ),
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.15),
+                      blurRadius: 8,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
                 ),
               ),
             ),

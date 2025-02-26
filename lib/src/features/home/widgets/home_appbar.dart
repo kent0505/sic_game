@@ -5,6 +5,7 @@ import '../../../core/config/constants.dart';
 import '../../../core/utils.dart';
 import '../../../core/widgets/button.dart';
 import '../../../core/widgets/svg_widget.dart';
+import '../../game/bloc/game_bloc.dart';
 import '../bloc/home_bloc.dart';
 
 class HomeAppbar extends StatefulWidget {
@@ -94,13 +95,21 @@ class _HomeAppbarState extends State<HomeAppbar> {
                             Row(
                               children: [
                                 Spacer(),
-                                Text(
-                                  formatNumber(100000),
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontFamily: 'w600',
-                                  ),
+                                BlocBuilder<GameBloc, GameState>(
+                                  builder: (context, state) {
+                                    if (state is GamesLoaded) {
+                                      return Text(
+                                        formatNumber(state.coins),
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontFamily: 'w600',
+                                        ),
+                                      );
+                                    }
+
+                                    return Container();
+                                  },
                                 ),
                                 SizedBox(width: 12),
                                 SvgWidget(Assets.coin),

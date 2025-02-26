@@ -13,6 +13,8 @@ class TitleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: rotated ? null : 20,
+      width: rotated ? 20 : null,
       margin: EdgeInsets.only(bottom: 2),
       alignment: Alignment.center,
       decoration: BoxDecoration(

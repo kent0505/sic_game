@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/config/constants.dart';
-import '../../../core/widgets/button.dart';
-import '../../../core/widgets/svg_widget.dart';
+import '../config/constants.dart';
+import 'button.dart';
+import 'svg_widget.dart';
 
 class Appbar extends StatelessWidget {
   const Appbar({super.key, required this.title});
