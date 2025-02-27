@@ -7,14 +7,9 @@ import '../models/game.dart';
 import 'chip_widget.dart';
 
 class FieldButton3 extends StatelessWidget {
-  const FieldButton3({
-    super.key,
-    required this.game,
-    required this.value,
-  });
+  const FieldButton3({super.key, required this.game});
 
   final Game game;
-  final int value;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +33,7 @@ class FieldButton3 extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        value.toString(),
+                        game.total.toString(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,

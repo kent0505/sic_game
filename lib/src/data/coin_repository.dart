@@ -5,9 +5,9 @@ import '../core/config/constants.dart';
 abstract interface class CoinRepository {
   const CoinRepository();
 
-  double getCoins();
+  int getCoins();
 
-  Future<void> saveCoins(double amount);
+  Future<void> saveCoins(int amount);
 }
 
 final class CoinRepositoryImpl implements CoinRepository {
@@ -16,12 +16,12 @@ final class CoinRepositoryImpl implements CoinRepository {
   final SharedPreferences _prefs;
 
   @override
-  double getCoins() {
-    return _prefs.getDouble(Keys.coins) ?? 100000;
+  int getCoins() {
+    return _prefs.getInt(Keys.coins) ?? 100000;
   }
 
   @override
-  Future<void> saveCoins(double amount) async {
-    await _prefs.setDouble(Keys.coins, amount);
+  Future<void> saveCoins(int amount) async {
+    await _prefs.setInt(Keys.coins, amount);
   }
 }

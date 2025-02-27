@@ -8,14 +8,9 @@ import '../models/game.dart';
 import 'chip_widget.dart';
 
 class FieldButton2 extends StatelessWidget {
-  const FieldButton2({
-    super.key,
-    required this.game,
-    required this.ids,
-  });
+  const FieldButton2({super.key, required this.game});
 
   final Game game;
-  final List<int> ids;
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +33,12 @@ class FieldButton2 extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(
-                      ids.length,
+                      game.correct.length,
                       (index) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 2),
                           child: SvgWidget(
-                            'assets/dice/d${ids[index]}.svg',
+                            'assets/dice/d${game.correct[index]}.svg',
                             height: 24,
                           ),
                         );

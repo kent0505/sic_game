@@ -71,7 +71,7 @@ class DealWidget extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Center(
                               child: Text(
-                                win > 0 ? '+$win' : '-$win',
+                                win > 0 ? '+$win' : '$win',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 40,

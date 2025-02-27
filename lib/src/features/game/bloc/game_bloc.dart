@@ -17,7 +17,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
   final Random _random = Random();
 
   ChipModel chip = ChipModel(amount: 10, asset: Assets.chip10);
-  double coins = 100000;
+  int coins = 100000;
   int amount = 0;
   List<ChipModel> lastChips = [];
   bool active = false;
@@ -76,6 +76,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     for (Game game in games) {
       for (ChipModel ch in game.chips) {
         if (ch.id == lastChips.last.id) {
+          coins += ch.amount;
           amount -= ch.amount;
           lastChips.removeLast();
           game.chips.remove(ch);
@@ -95,25 +96,82 @@ class GameBloc extends Bloc<GameEvent, GameState> {
   void _dealGame(
     DealGame event,
     Emitter<GameState> emit,
-  ) {
-    int dice1 = _random.nextInt(5) + 1;
-    int dice2 = _random.nextInt(5) + 1;
-    int dice3 = _random.nextInt(5) + 1;
+  ) async {
+    int dice1 = _random.nextInt(6) + 1;
+    int dice2 = _random.nextInt(6) + 1;
+    int dice3 = _random.nextInt(6) + 1;
 
-    // int totalDice = dice1 + dice2 + dice3;
+    int totalDice = dice1 + dice2 + dice3;
 
-    logger(dice1);
-    logger(dice2);
-    logger(dice3);
+    List<int> dices = [dice1, dice2, dice3];
 
-    int win = 0;
+    int win = -amount;
 
-    // sort games
     List<Game> sortedGames =
         games.where((element) => element.chips.isNotEmpty).toList();
-    logger(sortedGames.length);
 
-    // for (Game game in sortedGames) {}
+    for (Game game in sortedGames) {
+      win += calculate1(game, 1, dices);
+      win += calculate1(game, 2, dices);
+      win += calculate1(game, 3, dices);
+      win += calculate1(game, 4, dices);
+      win += calculate1(game, 5, dices);
+      win += calculate1(game, 6, dices);
+
+      win += calculate2(game, 7, dices);
+      win += calculate2(game, 8, dices);
+      win += calculate2(game, 9, dices);
+      win += calculate2(game, 10, dices);
+      win += calculate2(game, 11, dices);
+      win += calculate2(game, 12, dices);
+      win += calculate2(game, 13, dices);
+      win += calculate2(game, 14, dices);
+      win += calculate2(game, 15, dices);
+      win += calculate2(game, 16, dices);
+      win += calculate2(game, 17, dices);
+      win += calculate2(game, 18, dices);
+      win += calculate2(game, 19, dices);
+      win += calculate2(game, 20, dices);
+      win += calculate2(game, 21, dices);
+
+      win += calculate3(game, 22, totalDice);
+      win += calculate3(game, 23, totalDice);
+      win += calculate3(game, 24, totalDice);
+      win += calculate3(game, 25, totalDice);
+      win += calculate3(game, 26, totalDice);
+      win += calculate3(game, 27, totalDice);
+      win += calculate3(game, 28, totalDice);
+      win += calculate3(game, 29, totalDice);
+      win += calculate3(game, 30, totalDice);
+      win += calculate3(game, 31, totalDice);
+      win += calculate3(game, 32, totalDice);
+      win += calculate3(game, 33, totalDice);
+      win += calculate3(game, 34, totalDice);
+      win += calculate3(game, 35, totalDice);
+
+      win += calculateSmall(game, 36, totalDice);
+      win += calculateBig(game, 37, totalDice);
+
+      win += calculate4(game, 38, dices);
+      win += calculate4(game, 39, dices);
+      win += calculate4(game, 40, dices);
+      win += calculate4(game, 41, dices);
+      win += calculate4(game, 42, dices);
+      win += calculate4(game, 43, dices);
+
+      win += calculate5(game, 44, dices);
+      win += calculate5(game, 45, dices);
+      win += calculate5(game, 46, dices);
+      win += calculate5(game, 47, dices);
+      win += calculate5(game, 48, dices);
+      win += calculate5(game, 49, dices);
+
+      win += calculate6(game, dices);
+    }
+
+    coins += win;
+    await _repository.saveCoins(coins);
+    coins = _repository.getCoins();
 
     emit(GameDice());
     emit(GamesLoaded(

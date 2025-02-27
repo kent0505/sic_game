@@ -18,7 +18,7 @@ final class GamesLoaded extends GameState {
   });
 
   final ChipModel chip;
-  final double coins;
+  final int coins;
   final int amount;
   final bool active;
   final int dice1;
