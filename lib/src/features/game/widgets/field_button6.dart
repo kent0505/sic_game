@@ -29,22 +29,24 @@ class FieldButton6 extends StatelessWidget {
             onPressed: () {
               context.read<GameBloc>().add(SelectField(game: game));
             },
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _Dices(id: 6),
-                    _Dices(id: 5),
-                    _Dices(id: 4),
-                    _Dices(id: 3),
-                    _Dices(id: 2),
-                    _Dices(id: 1),
-                  ],
-                ),
-                ChipWidget(game: game),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.all(2),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Row(
+                    children: [
+                      _Dices(id: 6),
+                      _Dices(id: 5),
+                      _Dices(id: 4),
+                      _Dices(id: 3),
+                      _Dices(id: 2),
+                      _Dices(id: 1),
+                    ],
+                  ),
+                  ChipWidget(game: game),
+                ],
+              ),
             ),
           ),
         ),
@@ -60,17 +62,18 @@ class _Dices extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 1),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SvgWidget('assets/dice/d$id.svg', height: 14),
-          SizedBox(height: 4),
-          SvgWidget('assets/dice/d$id.svg', height: 14),
-          SizedBox(height: 4),
-          SvgWidget('assets/dice/d$id.svg', height: 14),
-        ],
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 1,
+        ),
+        child: Column(
+          children: [
+            Expanded(child: SvgWidget('assets/dice/d$id.svg')),
+            Expanded(child: SvgWidget('assets/dice/d$id.svg')),
+            Expanded(child: SvgWidget('assets/dice/d$id.svg')),
+          ],
+        ),
       ),
     );
   }

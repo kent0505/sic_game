@@ -36,7 +36,7 @@ class FieldButton3 extends StatelessWidget {
                         game.total.toString(),
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18,
+                          fontSize: 14,
                           fontFamily: 'w600',
                         ),
                       ),
@@ -44,7 +44,7 @@ class FieldButton3 extends StatelessWidget {
                         '1 wins ${game.wins}',
                         style: TextStyle(
                           color: Color(0xff776B95),
-                          fontSize: 10,
+                          fontSize: 8,
                           fontFamily: 'w600',
                         ),
                       ),

@@ -14,8 +14,8 @@ class TitleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: rotated ? null : 20,
-      width: rotated ? 20 : null,
       margin: EdgeInsets.only(bottom: 2),
+      padding: EdgeInsets.all(4),
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Color(0xff1B0159),

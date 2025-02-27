@@ -29,21 +29,25 @@ class FieldButton4 extends StatelessWidget {
           onPressed: () {
             context.read<GameBloc>().add(SelectField(game: game));
           },
-          minSize: 70,
           child: Stack(
             alignment: Alignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  small
-                      ? 'Small are numbers 4 to 10 1 wins 1 Lose if any triple appears'
-                      : 'Big are numbers 11 to 17 1 wins 1 Lose if any triple appears',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xff776B95),
-                    fontSize: 10,
-                    fontFamily: 'w600',
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
+                  child: Text(
+                    small
+                        ? 'Small are numbers 4 to 10 1 wins 1 Lose if any triple appears'
+                        : 'Big are numbers 11 to 17 1 wins 1 Lose if any triple appears',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xff776B95),
+                      fontSize: 10,
+                      fontFamily: 'w600',
+                    ),
                   ),
                 ),
               ),

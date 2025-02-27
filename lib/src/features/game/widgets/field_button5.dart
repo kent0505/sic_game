@@ -37,16 +37,19 @@ class FieldButton5 extends StatelessWidget {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgWidget('assets/dice/d$value.svg', height: 20),
-                      SizedBox(height: 4),
-                      SvgWidget('assets/dice/d$value.svg', height: 20),
-                      SizedBox(height: 4),
-                      SvgWidget('assets/dice/d$value.svg', height: 20),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.all(4),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(child: SvgWidget('assets/dice/d$value.svg')),
+                        SizedBox(height: 4),
+                        Expanded(child: SvgWidget('assets/dice/d$value.svg')),
+                        SizedBox(height: 4),
+                        Expanded(child: SvgWidget('assets/dice/d$value.svg')),
+                      ],
+                    ),
                   ),
                 ),
                 ChipWidget(game: game),

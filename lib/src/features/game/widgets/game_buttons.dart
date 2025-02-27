@@ -17,7 +17,7 @@ class GameButtons extends StatelessWidget {
       width: 400,
       alignment: Alignment.topCenter,
       padding: EdgeInsets.all(16),
-      height: 120,
+      height: 80,
       child: Row(
         children: [
           _Button(clear: true),
@@ -234,7 +234,7 @@ class _ButtonsDialog extends StatelessWidget {
         height: 74,
         width: 360,
         margin: EdgeInsets.only(
-          bottom: 110,
+          bottom: 60,
           left: 16,
           right: 16,
         ),

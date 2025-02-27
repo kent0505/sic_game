@@ -36,10 +36,13 @@ class FieldButton2 extends StatelessWidget {
                       game.correct.length,
                       (index) {
                         return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 2),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 2,
+                            vertical: 4,
+                          ),
                           child: SvgWidget(
                             'assets/dice/d${game.correct[index]}.svg',
-                            height: 24,
+                            // height: 24,
                           ),
                         );
                       },
