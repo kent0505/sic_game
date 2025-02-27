@@ -97,16 +97,16 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     DealGame event,
     Emitter<GameState> emit,
   ) async {
-    // if (coins < 0) {
-    //   emit(GameNoCoins());
-    //   emit(GamesLoaded(
-    //     chip: chip,
-    //     coins: coins,
-    //     amount: amount,
-    //     active: active,
-    //   ));
-    //   return;
-    // }
+    if (coins < 0) {
+      emit(GameNoCoins());
+      emit(GamesLoaded(
+        chip: chip,
+        coins: coins,
+        amount: amount,
+        active: active,
+      ));
+      return;
+    }
     int dice1 = _random.nextInt(6) + 1;
     int dice2 = _random.nextInt(6) + 1;
     int dice3 = _random.nextInt(6) + 1;
