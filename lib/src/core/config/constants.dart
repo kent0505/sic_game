@@ -30,12 +30,12 @@ abstract final class Assets {
   static const d4 = 'assets/dice/d4.svg';
   static const d5 = 'assets/dice/d5.svg';
   static const d6 = 'assets/dice/d6.svg';
-  // static const dice1 = 'assets/dice/dice1.svg';
-  // static const dice2 = 'assets/dice/dice2.svg';
-  // static const dice3 = 'assets/dice/dice3.svg';
-  // static const dice4 = 'assets/dice/dice4.svg';
-  // static const dice5 = 'assets/dice/dice5.svg';
-  // static const dice6 = 'assets/dice/dice6.svg';
+  static const dice1 = 'assets/dice/1.png';
+  static const dice2 = 'assets/dice/2.png';
+  static const dice3 = 'assets/dice/3.png';
+  static const dice4 = 'assets/dice/4.png';
+  static const dice5 = 'assets/dice/5.png';
+  static const dice6 = 'assets/dice/6.png';
 }
 
 abstract final class Keys {

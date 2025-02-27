@@ -7,24 +7,26 @@ final class GameInitial extends GameState {}
 
 final class GamesLoaded extends GameState {
   GamesLoaded({
-    required this.games,
     required this.chip,
     required this.coins,
+    required this.amount,
+    required this.active,
+    this.dice1 = 1,
+    this.dice2 = 1,
+    this.dice3 = 1,
+    this.win = 0,
   });
 
-  final List<Game> games;
   final ChipModel chip;
   final double coins;
+  final int amount;
+  final bool active;
+  final int dice1;
+  final int dice2;
+  final int dice3;
+  final int win;
 }
 
 final class GameNoCoins extends GameState {}
 
-final class GameDice extends GameState {
-  GameDice({
-    required this.dice1,
-    required this.dice2,
-    required this.dice3,
-  });
-
-  final int dice1, dice2, dice3;
-}
+final class GameDice extends GameState {}

@@ -4,12 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/widgets/button.dart';
 import '../../../core/widgets/svg_widget.dart';
 import '../bloc/game_bloc.dart';
+import '../models/game.dart';
 import 'chip_widget.dart';
 
 class FieldButton6 extends StatelessWidget {
-  const FieldButton6({super.key, required this.index});
+  const FieldButton6({super.key, required this.game});
 
-  final int index;
+  final Game game;
 
   @override
   Widget build(BuildContext context) {
@@ -24,37 +25,27 @@ class FieldButton6 extends StatelessWidget {
             color: Color(0xff270B6A),
             borderRadius: BorderRadius.circular(4),
           ),
-          child: BlocBuilder<GameBloc, GameState>(
-            builder: (context, state) {
-              if (state is GamesLoaded) {
-                final game = state.games[index];
-
-                return Button(
-                  onPressed: () {
-                    context.read<GameBloc>().add(SelectField(game: game));
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _Dices(id: 6),
-                          _Dices(id: 5),
-                          _Dices(id: 4),
-                          _Dices(id: 3),
-                          _Dices(id: 2),
-                          _Dices(id: 1),
-                        ],
-                      ),
-                      ChipWidget(game: game),
-                    ],
-                  ),
-                );
-              }
-
-              return SizedBox();
+          child: Button(
+            onPressed: () {
+              context.read<GameBloc>().add(SelectField(game: game));
             },
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _Dices(id: 6),
+                    _Dices(id: 5),
+                    _Dices(id: 4),
+                    _Dices(id: 3),
+                    _Dices(id: 2),
+                    _Dices(id: 1),
+                  ],
+                ),
+                ChipWidget(game: game),
+              ],
+            ),
           ),
         ),
       ),

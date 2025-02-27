@@ -4,16 +4,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/widgets/button.dart';
 import '../../../core/widgets/svg_widget.dart';
 import '../bloc/game_bloc.dart';
+import '../models/game.dart';
 import 'chip_widget.dart';
 
 class FieldButton2 extends StatelessWidget {
   const FieldButton2({
     super.key,
-    required this.index,
+    required this.game,
     required this.ids,
   });
 
-  final int index;
+  final Game game;
   final List<int> ids;
 
   @override
@@ -26,44 +27,33 @@ class FieldButton2 extends StatelessWidget {
             color: Color(0xff270B6A),
             borderRadius: BorderRadius.circular(4),
           ),
-          child: BlocBuilder<GameBloc, GameState>(
-            builder: (context, state) {
-              if (state is GamesLoaded) {
-                final game = state.games[index];
-
-                return Button(
-                  onPressed: () {
-                    context.read<GameBloc>().add(SelectField(game: game));
-                  },
-                  child: Center(
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(
-                            ids.length,
-                            (index) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 2),
-                                child: SvgWidget(
-                                  'assets/dice/d${ids[index]}.svg',
-                                  height: 24,
-                                ),
-                              );
-                            },
+          child: Button(
+            onPressed: () {
+              context.read<GameBloc>().add(SelectField(game: game));
+            },
+            child: Center(
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                      ids.length,
+                      (index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 2),
+                          child: SvgWidget(
+                            'assets/dice/d${ids[index]}.svg',
+                            height: 24,
                           ),
-                        ),
-                        ChipWidget(game: game),
-                      ],
+                        );
+                      },
                     ),
                   ),
-                );
-              }
-
-              return SizedBox();
-            },
+                  ChipWidget(game: game),
+                ],
+              ),
+            ),
           ),
         ),
       ),

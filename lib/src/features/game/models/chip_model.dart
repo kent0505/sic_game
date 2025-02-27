@@ -6,6 +6,6 @@ class ChipModel {
   });
 
   int id;
-  final double amount;
+  final int amount;
   final String asset;
 }

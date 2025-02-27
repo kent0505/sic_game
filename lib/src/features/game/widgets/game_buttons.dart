@@ -6,6 +6,7 @@ import '../../../core/widgets/button.dart';
 import '../../../core/widgets/svg_widget.dart';
 import '../bloc/game_bloc.dart';
 import '../models/chip_model.dart';
+import '../models/game.dart';
 
 class GameButtons extends StatelessWidget {
   const GameButtons({super.key});
@@ -23,7 +24,7 @@ class GameButtons extends StatelessWidget {
           SizedBox(width: 8),
           _Button(clear: false),
           SizedBox(width: 8),
-          _Deal(amount: 20),
+          _Deal(),
           SizedBox(width: 8),
           Button(
             onPressed: () {
@@ -76,7 +77,7 @@ class _Button extends StatelessWidget {
     return BlocBuilder<GameBloc, GameState>(
       builder: (context, state) {
         if (state is GamesLoaded) {
-          final active = state.games.any(
+          final active = games.any(
             (element) => element.chips.isNotEmpty,
           );
 
@@ -136,9 +137,7 @@ class _Button extends StatelessWidget {
 }
 
 class _Deal extends StatelessWidget {
-  const _Deal({required this.amount});
-
-  final int amount;
+  const _Deal();
 
   @override
   Widget build(BuildContext context) {
@@ -146,12 +145,8 @@ class _Deal extends StatelessWidget {
       child: BlocBuilder<GameBloc, GameState>(
         builder: (context, state) {
           if (state is GamesLoaded) {
-            final active = state.games.any(
-              (element) => element.chips.isNotEmpty,
-            );
-
             return Button(
-              onPressed: active
+              onPressed: state.active
                   ? () {
                       context.read<GameBloc>().add(DealGame());
                     }
@@ -159,12 +154,12 @@ class _Deal extends StatelessWidget {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: active ? null : Color(0xff423368),
+                  color: state.active ? null : Color(0xff423368),
                   border: Border.all(
                     width: 1,
-                    color: active ? Color(0xff898BFF) : Color(0xff414362),
+                    color: state.active ? Color(0xff898BFF) : Color(0xff414362),
                   ),
-                  gradient: active
+                  gradient: state.active
                       ? LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
@@ -177,7 +172,7 @@ class _Deal extends StatelessWidget {
                 ),
                 child: SizedBox(
                   height: 48,
-                  child: active
+                  child: state.active
                       ? Row(
                           children: [
                             SizedBox(width: 10),
@@ -191,7 +186,7 @@ class _Deal extends StatelessWidget {
                             ),
                             Spacer(),
                             Text(
-                              amount.toString(),
+                              state.amount.toString(),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 10,
