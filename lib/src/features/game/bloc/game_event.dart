@@ -22,3 +22,5 @@ final class SelectField extends GameEvent {
 
   final Game game;
 }
+
+final class ClearData extends GameEvent {}

@@ -33,6 +33,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
         DealGame() => _dealGame(event, emit),
         SelectChip() => _selectChip(event, emit),
         SelectField() => _selectField(event, emit),
+        ClearData() => _clearData(event, emit),
       },
     );
   }
@@ -233,6 +234,27 @@ class GameBloc extends Bloc<GameEvent, GameState> {
       emit(GameNoCoins());
     }
     active = games.any((element) => element.chips.isNotEmpty);
+    emit(GamesLoaded(
+      chip: chip,
+      coins: coins,
+      amount: amount,
+      active: active,
+    ));
+  }
+
+  void _clearData(
+    ClearData event,
+    Emitter<GameState> emit,
+  ) async {
+    for (Game game in games) {
+      game.chips = [];
+    }
+    lastChips = [];
+    chip = ChipModel(amount: 10, asset: Assets.chip10);
+    coins = 100000;
+    amount = 0;
+    active = false;
+    await _repository.saveCoins(coins);
     emit(GamesLoaded(
       chip: chip,
       coins: coins,

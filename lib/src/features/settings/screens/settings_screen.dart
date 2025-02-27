@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:app_settings/app_settings.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vibration/vibration.dart';
 
 import '../../../core/config/constants.dart';
 import '../../../core/widgets/button.dart';
 import '../../../core/widgets/svg_widget.dart';
 import '../../../core/widgets/switch_button.dart';
+import '../../game/bloc/game_bloc.dart';
 import 'privacy_screen.dart';
 import 'terms_screen.dart';
 
@@ -78,6 +80,19 @@ class SettingsScreen extends StatelessWidget {
                     asset: Assets.set6,
                     onPressed: () {},
                   ),
+                  SizedBox(height: 12),
+                  _SettingsButton(
+                    title: 'Clear data',
+                    asset: '',
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return _ClearDialog();
+                        },
+                      );
+                    },
+                  ),
                 ],
               ),
             ],
@@ -147,8 +162,10 @@ class _SettingsButton extends StatelessWidget {
         onPressed: onPressed,
         child: Row(
           children: [
-            SizedBox(width: 12),
-            SvgWidget(asset),
+            if (asset.isNotEmpty) ...[
+              SizedBox(width: 12),
+              SvgWidget(asset),
+            ],
             SizedBox(width: 12),
             Expanded(
               child: Text(
@@ -212,6 +229,76 @@ class _VibranceButtonState extends State<_VibranceButton> {
             ),
             SwitchButton(active: active),
             SizedBox(width: 12),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ClearDialog extends StatelessWidget {
+  const _ClearDialog();
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      backgroundColor: Color(0xff1E1E1E).withValues(alpha: 0.95),
+      child: SizedBox(
+        height: 140,
+        width: 270,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(height: 16),
+            Text(
+              'Clear Data?',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontFamily: 'w600',
+              ),
+            ),
+            Spacer(),
+            Row(
+              children: [
+                Expanded(
+                  child: Button(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Center(
+                      child: Text(
+                        'Cancel',
+                        style: TextStyle(
+                          color: Color(0xff0A84FF),
+                          fontSize: 16,
+                          fontFamily: 'w600',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Button(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      context.read<GameBloc>().add(ClearData());
+                    },
+                    child: Center(
+                      child: Text(
+                        'Clear',
+                        style: TextStyle(
+                          color: Color(0xffD90A0A),
+                          fontSize: 16,
+                          fontFamily: 'w600',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 8),
           ],
         ),
       ),
